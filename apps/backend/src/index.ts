@@ -11,45 +11,42 @@ import pdfRouter from './routes/pdf';
 import { errorHandler, notFound } from './middleware/errorHandler';
 
 async function main(): Promise<void> {
-  // ── Database ───────────────────────────────────────────────────────────────
   await mongoose.connect(config.mongodbUri);
   console.log('✅ MongoDB connected');
 
-  // ── Express ────────────────────────────────────────────────────────────────
   const app = express();
 
   app.use(
     cors({
-      origin: config.frontendUrl,
+      origin: [
+        'http://localhost:3000',
+        'https://veda-fjn5a8zqi-viditjain44s-projects.vercel.app',
+        /\.vercel\.app$/,
+      ],
       credentials: true,
     })
   );
+
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-  // Health check
   app.get('/health', (_req, res) => {
     res.json({
       status: 'ok',
       timestamp: new Date().toISOString(),
-      mongo:
-        mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+      mongo: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
     });
   });
 
-  // Routes
   app.use('/api/assignments', assignmentsRouter);
   app.use('/api/assignments', pdfRouter);
 
-  // 404 + error handler (must be last)
   app.use(notFound);
   app.use(errorHandler);
 
-  // ── HTTP + WebSocket ───────────────────────────────────────────────────────
   const server = http.createServer(app);
   wsManager.init(server);
 
-  // ── BullMQ Worker ──────────────────────────────────────────────────────────
   await startWorker();
 
   server.listen(config.port, () => {
