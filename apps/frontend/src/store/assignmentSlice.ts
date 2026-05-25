@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import type { Assignment, GeneratedPaper } from '@veda-ai/shared';
+import type { Assignment, GeneratedPaper } from '@/types/shared';
 import { assignmentsApi } from '@/lib/api';
 
 // ─── State ────────────────────────────────────────────────────────────────────

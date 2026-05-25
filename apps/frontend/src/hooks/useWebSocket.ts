@@ -7,7 +7,7 @@ import {
   wsJobCompleted,
   wsJobFailed,
 } from '@/store/assignmentSlice';
-import type { WSEvent } from '@veda-ai/shared';
+import type { WSEvent } from '@/types/shared';
 import toast from 'react-hot-toast';
 
 const WS_URL =

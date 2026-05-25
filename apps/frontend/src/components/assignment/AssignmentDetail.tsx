@@ -12,7 +12,7 @@ import {
 import { fetchAssignment, regenerateAssignment } from '@/store/assignmentSlice';
 import { useWebSocket } from '@/hooks/useWebSocket';
 import PaperView from '@/components/paper/PaperView';
-import type { Assignment } from '@veda-ai/shared';
+import type { Assignment } from '@/types/shared';
 import toast from 'react-hot-toast';
 
 // ─── Processing view with animated ring ──────────────────────────────────────

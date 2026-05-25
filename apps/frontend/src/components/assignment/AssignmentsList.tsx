@@ -12,8 +12,7 @@ import {
 } from '@/store/hooks';
 import { fetchAssignments, deleteAssignment } from '@/store/assignmentSlice';
 import { useWebSocket } from '@/hooks/useWebSocket';
-import type { Assignment } from '@veda-ai/shared';
-
+import type { Assignment } from '@/types/shared';
 function StatusBadge({ status, progress }: { status: Assignment['status']; progress?: number }) {
   const map: Record<string, { label: string; cls: string }> = {
     draft:      { label: 'Draft',             cls: 'bg-zinc-100 text-zinc-600' },

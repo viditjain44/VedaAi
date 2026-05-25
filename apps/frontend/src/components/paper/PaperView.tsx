@@ -2,8 +2,7 @@
 import { useState } from 'react';
 import { Download, RefreshCw, Printer, BookOpen, Loader2 } from 'lucide-react';
 import { assignmentsApi } from '@/lib/api';
-import type { GeneratedPaper, GeneratedQuestion } from '@veda-ai/shared';
-
+import type { GeneratedPaper, GeneratedQuestion } from '@/types/shared';
 function DifficultyBadge({ difficulty }: { difficulty: GeneratedQuestion['difficulty'] }) {
   const map = {
     easy:   { label: 'Easy',     cls: 'badge-easy'   },

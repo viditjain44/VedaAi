@@ -6,7 +6,7 @@ import { Plus, X, Loader2, Upload } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAppDispatch } from '@/store/hooks';
 import { createAssignment } from '@/store/assignmentSlice';
-import type { QuestionConfig, QuestionType, Difficulty } from '@veda-ai/shared';
+import type { QuestionConfig, QuestionType, Difficulty } from '@/types/shared';
 
 const QUESTION_TYPES: { value: QuestionType; label: string }[] = [
   { value: 'multiple_choice',   label: 'Multiple Choice Questions' },
